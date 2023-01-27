@@ -18,15 +18,18 @@
     "eslint-config-next": "13.1.4",
     "framer-motion": "^8.5.2",
     "lodash": "^4.17.21",
+    "lru-cache": "^7.14.1",
     "next": "13.1.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-query": "^3.39.2",
     "react-select": "^5.7.0",
-    "typescript": "4.9.4"
+    "typescript": "4.9.4",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.191",
+    "@types/uuid": "^9.0.0",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.4"

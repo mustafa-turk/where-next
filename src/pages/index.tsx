@@ -49,13 +49,13 @@ export default function HomePage() {
               <h2 className='font-bold text-xl mb-3'>
                 Our top destinations for you are the following, have fun!
               </h2>
-              <div className='flex gap-3 flex-col'>
+              <div>
                 {lookup(suggestions).map((suggestion, index) => {
                   if (!suggestion) return null;
                   return (
                     <div
                       key={index}
-                      className='bg-neutral-100 px-3 py-2 rounded-xl'
+                      className='bg-neutral-100 px-3 py-2 rounded-xl my-3'
                     >
                       <span>{`${suggestion.emoji} ${suggestion.name}`}</span>
                       <a
