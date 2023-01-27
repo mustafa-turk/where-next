@@ -3,8 +3,6 @@ module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
-
-    // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -17,6 +15,9 @@ module.exports = {
           "0%": { "margin-left": "0" },
           "100%": { "margin-left": "-5746px" },
         },
+      },
+      height: {
+        box: "452px",
       },
     },
   },

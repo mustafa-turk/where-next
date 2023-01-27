@@ -15,6 +15,7 @@ export default function HomePage() {
     isLoading,
     mutate: generate,
     data: suggestions,
+    reset,
   } = useMutation(() => generateSuggestions(selected));
 
   return (
@@ -25,18 +26,29 @@ export default function HomePage() {
 
       <Header />
       <main className='p-4 max-w-xl mx-auto -mt-6'>
-        <section>
-          <h2 className='font-bold text-xl mb-3'>
-            Where have you already been?
-          </h2>
-          <Select onChange={setSelected} />
-          <button
-            onClick={() => generate()}
-            className='bg-black p-2 mt-3 rounded-md text-white w-full hover:bg-neutral-800 transition-colors'
-          >
-            {isLoading ? "Loading..." : "Find New Destinations"}
-          </button>
-        </section>
+        <AnimatePresence>
+          {!isLoading && isEmpty(suggestions) && (
+            <motion.section
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className='mt-10 h-box'
+            >
+              <h2 className='font-bold text-xl mb-3'>
+                Where have you already been?
+              </h2>
+              <Select onChange={setSelected} />
+              <button onClick={() => generate()} className='button--primary'>
+                {isLoading ? "Loading..." : "Find"}
+              </button>
+
+              <p className='text-center mt-3 text-neutral-500'>
+                OpenAI will find the best next countries based on your
+                selections.
+              </p>
+            </motion.section>
+          )}
+        </AnimatePresence>
 
         <AnimatePresence>
           {!isLoading && !isEmpty(suggestions) && (
@@ -44,7 +56,7 @@ export default function HomePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className='mt-10'
+              className='mt-10 h-box'
             >
               <h2 className='font-bold text-xl mb-3'>
                 Our top destinations for you are the following, have fun!
@@ -70,6 +82,9 @@ export default function HomePage() {
                   );
                 })}
               </div>
+              <button onClick={reset} className='button--primary'>
+                Find again
+              </button>
             </motion.section>
           )}
         </AnimatePresence>

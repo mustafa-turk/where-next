@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .button--primary {
+    @apply bg-black p-2 mt-3 rounded-md text-white w-full hover:bg-neutral-800 transition-colors;
+  }
+}

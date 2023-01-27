@@ -13,7 +13,7 @@ function CustomSelect({ onChange }: { onChange: Function }) {
     <Select
       options={options}
       isMulti
-      placeholder='Search'
+      placeholder='Search visited countries'
       isClearable={false}
       onChange={(selected) => onChange(selected.map((s) => s.value))}
       classNames={{
