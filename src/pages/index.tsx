@@ -39,7 +39,7 @@ export default function HomePage() {
               </h2>
               <Select onChange={setSelected} />
               <button onClick={() => generate()} className='button--primary'>
-                {isLoading ? "Loading..." : "Find"}
+                {isLoading ? "Loading..." : "Find Destinations"}
               </button>
 
               <p className='text-center mt-3 text-neutral-500'>
@@ -67,7 +67,7 @@ export default function HomePage() {
                   return (
                     <div
                       key={index}
-                      className='bg-neutral-100 px-3 py-2 rounded-xl my-3'
+                      className='bg-neutral-900 text-neutral-300 px-3 py-2 rounded-md my-3'
                     >
                       <span>{`${suggestion.emoji} ${suggestion.name}`}</span>
                       <a

@@ -8,12 +8,14 @@ function Header() {
   return (
     <header className='relative w-full overflow-hidden -z-10'>
       <div className='mb-8 '>
-        <h1 className='font-black text-4xl text-center'>Where next?</h1>
-        <p className='text-lg text-neutral-600 text-center'>
+        <h1 className='font-black text-4xl text-center text-white'>
+          Where next?
+        </h1>
+        <p className='text-lg text-neutral-400 text-center'>
           Let our AI pick top destinations for you!
         </p>
       </div>
-      <div className='w-full absolute inset-0 bg-gradient-to-t via-white/60 from-white to-transparent' />
+      <div className='w-full absolute inset-0 bg-gradient-to-t via-black/60 from-black to-transparent' />
       <div className='whitespace-nowrap animate-move'>
         {times(3, () => (
           <div className='flex gap-3 my-3'>
@@ -22,7 +24,7 @@ function Header() {
               return (
                 <span
                   key={c.name}
-                  className='bg-neutral-100 px-3 py-2 rounded-xl'
+                  className='bg-neutral-900 px-3 py-2 rounded-xl text-white'
                 >
                   {label}
                 </span>
