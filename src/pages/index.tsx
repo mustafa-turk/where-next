@@ -34,7 +34,7 @@ export default function HomePage() {
               exit={{ opacity: 0 }}
               className='mt-10'
             >
-              <h2 className='font-bold text-xl mb-3'>
+              <h2 className='font-bold text-xl mb-3 text-white'>
                 Where have you already been?
               </h2>
               <Select onChange={setSelected} />
@@ -58,7 +58,7 @@ export default function HomePage() {
               exit={{ opacity: 0 }}
               className='mt-10'
             >
-              <h2 className='font-bold text-xl mb-3'>
+              <h2 className='font-bold text-xl mb-3 text-white'>
                 Our top destinations for you are the following, have fun!
               </h2>
               <div>
