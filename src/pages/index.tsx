@@ -19,20 +19,20 @@ export default function HomePage() {
   } = useMutation(() => generateSuggestions(selected));
 
   return (
-    <div className='py-10 mb-10'>
+    <div className='py-10'>
       <Head>
         <title>Where to go Next?</title>
       </Head>
 
       <Header />
-      <main className='p-4 max-w-xl mx-auto -mt-6'>
+      <main className='p-4 max-w-xl mx-auto -mt-14'>
         <AnimatePresence>
           {!isLoading && isEmpty(suggestions) && (
             <motion.section
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className='mt-10 h-box'
+              className='mt-10'
             >
               <h2 className='font-bold text-xl mb-3'>
                 Where have you already been?
@@ -56,7 +56,7 @@ export default function HomePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className='mt-10 h-box'
+              className='mt-10'
             >
               <h2 className='font-bold text-xl mb-3'>
                 Our top destinations for you are the following, have fun!
