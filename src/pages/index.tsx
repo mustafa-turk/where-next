@@ -19,7 +19,7 @@ export default function HomePage() {
   } = useMutation(() => generateSuggestions(selected));
 
   return (
-    <div className='my-10'>
+    <div className='py-10 mb-10'>
       <Head>
         <title>Where to go Next?</title>
       </Head>
