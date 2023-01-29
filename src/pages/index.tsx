@@ -8,6 +8,7 @@ import { generateSuggestions } from "@/utils/api";
 import Head from "next/head";
 import Header from "@/components/header";
 import Select from "@/components/select";
+import Toast, { toast } from "@/components/toast";
 
 export default function HomePage() {
   const [selected, setSelected] = useState([]);
@@ -18,11 +19,20 @@ export default function HomePage() {
     reset,
   } = useMutation(() => generateSuggestions(selected));
 
+  function handleFind() {
+    if (isEmpty(selected)) {
+      return toast("Please select atleast one country");
+    }
+    generate();
+  }
+
   return (
     <div className='py-10'>
       <Head>
         <title>Where to go Next?</title>
       </Head>
+
+      <Toast />
 
       <Header />
       <main className='p-4 max-w-xl mx-auto -mt-14'>
@@ -38,7 +48,7 @@ export default function HomePage() {
                 Where have you already been?
               </h2>
               <Select onChange={setSelected} />
-              <button onClick={() => generate()} className='button--primary'>
+              <button onClick={handleFind} className='button--primary'>
                 {isLoading ? "Loading..." : "Find Destinations"}
               </button>
 

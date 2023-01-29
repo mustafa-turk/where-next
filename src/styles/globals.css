@@ -8,7 +8,7 @@ body {
 
 @layer components {
   .button--primary {
-    @apply bg-neutral-900 p-2 mt-3 rounded-md text-neutral-300 w-full hover:bg-neutral-800 transition-colors;
+    @apply bg-neutral-900 p-2 mt-3 rounded-md text-neutral-300 w-full hover:bg-neutral-800 transition-colors border-2 border-neutral-800;
   }
 
   @layer components {

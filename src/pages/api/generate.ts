@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { v4 as uuid } from "uuid";
 import rateLimiter from "@/utils/rate-limiter";
+import { isEmpty } from "lodash";
 
 type Data = {
   suggestions: string;
@@ -20,6 +20,10 @@ export default async function handler(
   res: NextApiResponse<Data | Error>
 ) {
   try {
+    if (isEmpty(req.body.selected)) {
+      res.status(400).json({ error: "Please select atleast one country" });
+    }
+
     await limiter.check(res, 10, "CACHE_TOKEN");
     const selected = req.body.selected.join(", ");
     const prompt = `Suggest 5 new countries to visit based on ${selected} in array format`;
