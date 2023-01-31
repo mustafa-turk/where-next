@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
+import { motion, AnimatePresence } from "framer-motion";
 import { resolveValue, toast, Toaster } from "react-hot-toast";
 
 function Toast() {
@@ -12,7 +12,7 @@ function Toast() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className='p-2 px-4 bg-red-800 border border-red-700 text-red-100 rounded-md shadow-lg'
+              className='p-2 px-4 bg-red-700 border border-red-800 text-red-100 rounded-md shadow-lg'
             >
               <p>{resolveValue(t.message, t)}</p>
             </motion.div>

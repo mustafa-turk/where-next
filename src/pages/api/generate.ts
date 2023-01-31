@@ -1,9 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import rateLimiter from "@/utils/rate-limiter";
 import { isEmpty } from "lodash";
+import { v4 as generateUUID } from "uuid";
+import rateLimiter from "@/utils/rate-limiter";
+
+import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
   suggestions: string;
+  id: string;
 };
 
 type Error = {
@@ -21,10 +24,10 @@ export default async function handler(
 ) {
   try {
     if (isEmpty(req.body.selected)) {
-      res.status(400).json({ error: "Please select atleast one country" });
+      res.status(400).json({ error: "Please select at least one country" });
     }
 
-    await limiter.check(res, 10, "CACHE_TOKEN");
+    await limiter.check(res, 20, "CACHE_TOKEN");
     const selected = req.body.selected.join(", ");
     const prompt = `Suggest 5 new countries to visit based on ${selected} in array format`;
 
@@ -46,12 +49,9 @@ export default async function handler(
     if (data.choices) {
       const [suggestions] = data.choices;
 
-      const sanitized = suggestions.text
-        .replaceAll("\n\n", "")
-        .replaceAll("'", '"');
-
       res.status(200).json({
-        suggestions: sanitized,
+        id: generateUUID(),
+        suggestions: sanitizeString(suggestions.text),
       });
     }
   } catch {
@@ -59,4 +59,8 @@ export default async function handler(
   }
 
   res.status(404);
+}
+
+function sanitizeString(string: String) {
+  return string.replaceAll("\n\n", "").replaceAll("'", '"');
 }

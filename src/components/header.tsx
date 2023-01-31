@@ -1,13 +1,13 @@
-import dynamic from "next/dynamic";
+import { memo } from "react";
 import { times } from "lodash";
+import dynamic from "next/dynamic";
 
 import { getRandomCountries } from "@/utils/lookup";
-import { memo } from "react";
 
 function Header() {
   return (
     <header className='relative w-full overflow-hidden -z-10'>
-      <div className='mb-8 '>
+      <div className='mb-8'>
         <h1 className='font-black text-4xl text-center text-white'>
           Where next?
         </h1>

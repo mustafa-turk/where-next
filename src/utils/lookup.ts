@@ -1,11 +1,11 @@
 import { shuffle } from "lodash";
-import countries from "@/utils/flags.json";
+import countries from "@/json/flags.json";
 
-const { lookup: find } = require("country-data-list");
+const { lookup } = require("country-data-list");
 
-export function lookup(list: String[]) {
+export function getCountriesByCode(list: String[]) {
   return list.map((name) => {
-    const result = find.countries({ name });
+    const result = lookup.countries({ name });
 
     if (!result) {
       return null;
@@ -22,7 +22,7 @@ export function lookup(list: String[]) {
   });
 }
 
-export function getCountries() {
+export function getAllCountries() {
   return countries;
 }
 

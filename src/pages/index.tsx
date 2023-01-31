@@ -1,29 +1,30 @@
 import { useState } from "react";
 import { isEmpty } from "lodash";
 import { useMutation } from "react-query";
-import { lookup } from "@/utils/lookup";
 import { motion, AnimatePresence } from "framer-motion";
-import { generateSuggestions } from "@/utils/api";
 
 import Head from "next/head";
 import Header from "@/components/header";
 import Select from "@/components/select";
 import Toast, { toast } from "@/components/toast";
 
+import { getCountriesByCode } from "@/utils/lookup";
+import { fetchSuggestions } from "@/utils/api";
+
 export default function HomePage() {
-  const [selected, setSelected] = useState([]);
+  const [selectedCountryNames, setSelectedCountryNames] = useState([]);
   const {
     isLoading,
-    mutate: generate,
+    mutate: generateSuggestions,
     data: suggestions,
     reset,
-  } = useMutation(() => generateSuggestions(selected));
+  } = useMutation(() => fetchSuggestions(selectedCountryNames));
 
   function handleFind() {
-    if (isEmpty(selected)) {
-      return toast("Please select atleast one country");
+    if (isEmpty(selectedCountryNames)) {
+      return toast("Please select at least one country");
     }
-    generate();
+    generateSuggestions();
   }
 
   return (
@@ -37,7 +38,7 @@ export default function HomePage() {
       <Header />
       <main className='p-4 max-w-xl mx-auto -mt-14'>
         <AnimatePresence>
-          {!isLoading && isEmpty(suggestions) && (
+          {isEmpty(suggestions) && (
             <motion.section
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -47,8 +48,12 @@ export default function HomePage() {
               <h2 className='font-bold text-xl mb-3 text-white'>
                 Where have you already been?
               </h2>
-              <Select onChange={setSelected} />
-              <button onClick={handleFind} className='button--primary'>
+              <Select onChange={setSelectedCountryNames} />
+              <button
+                onClick={handleFind}
+                className='button--primary'
+                disabled={isLoading}
+              >
                 {isLoading ? "Loading..." : "Find Destinations"}
               </button>
 
@@ -61,7 +66,7 @@ export default function HomePage() {
         </AnimatePresence>
 
         <AnimatePresence>
-          {!isLoading && !isEmpty(suggestions) && (
+          {!isEmpty(suggestions) && (
             <motion.section
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -72,7 +77,7 @@ export default function HomePage() {
                 Our top destinations for you are the following, have fun!
               </h2>
               <div>
-                {lookup(suggestions).map((suggestion, index) => {
+                {getCountriesByCode(suggestions).map((suggestion, index) => {
                   if (!suggestion) return null;
                   return (
                     <div

@@ -1,4 +1,4 @@
-export function generateSuggestions(selected: string[]) {
+export function fetchSuggestions(selected: string[]) {
   return fetch("api/generate", {
     method: "POST",
     headers: {

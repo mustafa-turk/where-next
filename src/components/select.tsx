@@ -1,10 +1,10 @@
-import Select from "react-select";
 import dynamic from "next/dynamic";
+import Select from "react-select";
 
-import { getCountries } from "@/utils/lookup";
+import { getAllCountries } from "@/utils/lookup";
 
 function CustomSelect({ onChange }: { onChange: Function }) {
-  const options = getCountries().map((c) => ({
+  const options = getAllCountries().map((c) => ({
     value: c.name,
     label: `${c.emoji} ${c.name}`,
   }));
@@ -23,10 +23,7 @@ function CustomSelect({ onChange }: { onChange: Function }) {
         IndicatorSeparator: () => null,
       }}
       classNames={{
-        control: () => "shadow-none",
-        placeholder: () => "text-neutral-900",
-        multiValueLabel: () => "bg-neutral-800",
-        multiValueRemove: () => "bg-neutral-800 text-white",
+        multiValueRemove: () => "text-white",
       }}
     />
   );
