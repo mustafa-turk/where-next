@@ -29,8 +29,6 @@ export default function rateLimiter(options?: Options) {
           isRateLimited ? 0 : limit - currentUsage
         );
 
-        console.log({ isRateLimited });
-
         return isRateLimited ? reject() : resolve();
       }),
   };

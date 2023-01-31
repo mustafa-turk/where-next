@@ -37,7 +37,7 @@ export default function HomePage() {
 
       <Header />
       <main className='p-4 max-w-xl mx-auto -mt-14'>
-        <AnimatePresence>
+        <AnimatePresence mode='popLayout'>
           {isEmpty(suggestions) && (
             <motion.section
               initial={{ opacity: 0 }}
@@ -65,7 +65,7 @@ export default function HomePage() {
           )}
         </AnimatePresence>
 
-        <AnimatePresence>
+        <AnimatePresence mode='popLayout'>
           {!isEmpty(suggestions) && (
             <motion.section
               initial={{ opacity: 0 }}
