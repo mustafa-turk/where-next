@@ -10,9 +10,11 @@ function CustomSelect({
   onChange: Function;
   isDisabled: boolean;
 }) {
+  const isWindows = navigator.platform.indexOf("Win") === 0;
+
   const options = getAllCountries().map((c) => ({
     value: c.name,
-    label: `${c.emoji} ${c.name}`,
+    label: isWindows ? c.name : `${c.emoji} ${c.name}`,
   }));
 
   return (

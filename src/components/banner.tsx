@@ -4,6 +4,8 @@ import { memo } from "react";
 import dynamic from "next/dynamic";
 
 function Banner() {
+  const isWindows = navigator.platform.indexOf("Win") === 0;
+
   return (
     <div className='relative w-full overflow-hidden -z-10'>
       <div className='w-full absolute inset-0 bg-gradient-to-t via-black/60 from-black to-transparent' />
@@ -11,7 +13,7 @@ function Banner() {
         {times(3, (index) => (
           <div className='flex gap-3 my-3' key={index}>
             {getRandomCountries().map((c) => {
-              const label = `${c.emoji} ${c.name}`;
+              const label = isWindows ? c.name : `${c.emoji} ${c.name}`;
               return (
                 <span
                   key={c.name}
