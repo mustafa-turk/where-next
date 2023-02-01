@@ -7,6 +7,7 @@ import Head from "next/head";
 import Header from "@/components/header";
 import Banner from "@/components/banner";
 import Select from "@/components/select";
+import Loader from "@/components/loader";
 import Toast, { toast } from "@/components/toast";
 
 import { getCountriesByCode } from "@/utils/lookup";
@@ -55,13 +56,22 @@ export default function HomePage() {
               <h2 className='font-bold text-xl mb-3 text-white'>
                 Where have you already been?
               </h2>
-              <Select onChange={setSelectedCountryNames} />
+              <Select
+                onChange={setSelectedCountryNames}
+                isDisabled={isLoading}
+              />
               <button
                 onClick={handleFind}
-                className='button--primary'
+                className='button--primary flex justify-center'
                 disabled={isLoading}
               >
-                {isLoading ? "Loading..." : "Find Destinations"}
+                {isLoading ? (
+                  <span className='flex justify-center gap-1'>
+                    Finding Destinations <Loader />
+                  </span>
+                ) : (
+                  "Find Destinations"
+                )}
               </button>
 
               <p className='text-center mt-3 text-neutral-500'>

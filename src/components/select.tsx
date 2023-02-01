@@ -3,7 +3,13 @@ import Select from "react-select";
 
 import { getAllCountries } from "@/utils/lookup";
 
-function CustomSelect({ onChange }: { onChange: Function }) {
+function CustomSelect({
+  onChange,
+  isDisabled,
+}: {
+  onChange: Function;
+  isDisabled: boolean;
+}) {
   const options = getAllCountries().map((c) => ({
     value: c.name,
     label: `${c.emoji} ${c.name}`,
@@ -15,6 +21,7 @@ function CustomSelect({ onChange }: { onChange: Function }) {
       isMulti
       placeholder='Search visited countries'
       isClearable={false}
+      isDisabled={isDisabled}
       className='my-react-select-container'
       classNamePrefix='my-react-select'
       onChange={(selected) => onChange(selected.map((s) => s.value))}
