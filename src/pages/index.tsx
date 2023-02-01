@@ -38,6 +38,16 @@ export default function HomePage() {
     <div className='py-10'>
       <Head>
         <title>Where to go Next?</title>
+        <meta
+          name='description'
+          content='AI will pick the top destinations for you!'
+          key='desc'
+        />
+        <meta property='og:title' content='Where next?' />
+        <meta
+          property='og:description'
+          content='AI will pick the top destinations for you!'
+        />
       </Head>
 
       <Toast />
