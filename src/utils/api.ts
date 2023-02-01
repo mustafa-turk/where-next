@@ -8,5 +8,8 @@ export function fetchSuggestions(selected: string[]) {
     body: JSON.stringify({ selected }),
   })
     .then((res) => res.json())
-    .then((data) => JSON.parse(data.suggestions));
+    .then((data) => JSON.parse(data.suggestions))
+    .catch(() => {
+      throw new Error();
+    });
 }

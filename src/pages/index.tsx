@@ -21,7 +21,13 @@ export default function HomePage() {
     mutate: generateSuggestions,
     data: suggestions,
     reset,
-  } = useMutation(() => fetchSuggestions(selectedCountryNames));
+  } = useMutation(() => fetchSuggestions(selectedCountryNames), {
+    onError: () => {
+      toast(
+        "We could not find any suggestions, please try again by selecting other countries"
+      );
+    },
+  });
 
   function handleFind() {
     if (isEmpty(selectedCountryNames)) {
@@ -36,7 +42,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className='py-10'>
+    <div className='py-4'>
       <Head>
         <title>Where to go Next?</title>
         <meta
@@ -49,6 +55,14 @@ export default function HomePage() {
           property='og:description'
           content='AI will pick the top destinations for you!'
         />
+        <meta property='og:image' content='/og.jpg' />
+        <meta name='twitter:title' content='Where next?' />
+        <meta
+          name='twitter:description'
+          content='AI will pick the top destinations for you!'
+        />
+        <meta name='twitter:image' content='/og.jpg' />
+        <meta name='twitter:card' content='summary_large_image' />
       </Head>
 
       <Toast />
