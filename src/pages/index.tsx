@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import Head from "next/head";
 import Header from "@/components/header";
+import Banner from "@/components/banner";
 import Select from "@/components/select";
 import Toast, { toast } from "@/components/toast";
 
@@ -27,6 +28,11 @@ export default function HomePage() {
     generateSuggestions();
   }
 
+  function handleReset() {
+    reset();
+    setSelectedCountryNames([]);
+  }
+
   return (
     <div className='py-10'>
       <Head>
@@ -34,8 +40,9 @@ export default function HomePage() {
       </Head>
 
       <Toast />
-
       <Header />
+      <Banner />
+
       <main className='p-4 max-w-xl mx-auto -mt-14'>
         <AnimatePresence mode='popLayout'>
           {isEmpty(suggestions) && (
@@ -97,7 +104,7 @@ export default function HomePage() {
                   );
                 })}
               </div>
-              <button onClick={reset} className='button--primary'>
+              <button onClick={handleReset} className='button--primary'>
                 Find again
               </button>
             </motion.section>

@@ -1,42 +1,28 @@
-import { memo } from "react";
-import { times } from "lodash";
-import dynamic from "next/dynamic";
-
-import { getRandomCountries } from "@/utils/lookup";
+import { GithubIcon } from "./icon";
 
 function Header() {
   return (
-    <header className='relative w-full overflow-hidden -z-10'>
-      <div className='mb-8'>
-        <h1 className='font-black text-4xl text-center text-white'>
-          Where next?
-        </h1>
-        <p className='text-lg text-neutral-400 text-center'>
-          Let our AI pick top destinations for you!
-        </p>
-      </div>
-      <div className='w-full absolute inset-0 bg-gradient-to-t via-black/60 from-black to-transparent' />
-      <div className='whitespace-nowrap animate-move'>
-        {times(3, (index) => (
-          <div className='flex gap-3 my-3' key={index}>
-            {getRandomCountries().map((c) => {
-              const label = `${c.emoji} ${c.name}`;
-              return (
-                <span
-                  key={c.name}
-                  className='bg-neutral-900 px-3 py-2 rounded-xl text-white'
-                >
-                  {label}
-                </span>
-              );
-            })}
-          </div>
-        ))}
-      </div>
+    <header className='mb-8 flex flex-col items-center'>
+      <a
+        className='block mt-1 text-neutral-500'
+        href='https://github.com/mustafa-turk/where-next'
+        target='_blank'
+        rel='noreferrer'
+      >
+        <button
+          className='button--primary w-auto text-sm mb-3 flex items-center gap-2'
+          onClick={console.log}
+        >
+          <GithubIcon />
+          Star on GitHub
+        </button>
+      </a>
+      <h1 className='font-black text-4xl text-white'>Where next?</h1>
+      <p className='text-lg text-neutral-400'>
+        Let our AI pick top destinations for you!
+      </p>
     </header>
   );
 }
 
-export default dynamic(() => Promise.resolve(memo(Header)), {
-  ssr: false,
-});
+export default Header;
