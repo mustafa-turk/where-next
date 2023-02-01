@@ -19,7 +19,7 @@ function Header() {
       </a>
       <h1 className='font-black text-4xl text-white'>Where next?</h1>
       <p className='text-lg text-neutral-400'>
-        Let our AI pick top destinations for you!
+        AI will pick the top destinations for you!
       </p>
     </header>
   );
