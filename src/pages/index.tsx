@@ -9,6 +9,7 @@ import Banner from "@/components/banner";
 import Select from "@/components/select";
 import Loader from "@/components/loader";
 import Toast, { toast } from "@/components/toast";
+import Footer from "@/components/footer";
 
 import { getCountriesByCode } from "@/utils/lookup";
 import { fetchSuggestions } from "@/utils/api";
@@ -83,11 +84,6 @@ export default function HomePage() {
                   "Find Destinations"
                 )}
               </button>
-
-              <p className='text-center mt-3 text-neutral-500'>
-                OpenAI will find the best next countries based on your
-                selections.
-              </p>
             </motion.section>
           )}
         </AnimatePresence>
@@ -131,6 +127,7 @@ export default function HomePage() {
           )}
         </AnimatePresence>
       </main>
+      <Footer />
     </div>
   );
 }
