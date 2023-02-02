@@ -1,5 +1,5 @@
 import { isEmpty } from "lodash";
-
+import { ERR_MESSAGE_NOT_FOUND, ERR_MESSAGE_SELECT } from "@/utils/constants";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
@@ -10,18 +10,20 @@ type Error = {
   error: string;
 };
 
+const COMPLETIONS_URL = "https://api.openai.com/v1/completions";
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data | Error>
 ) {
   if (isEmpty(req.body.selected)) {
-    res.status(400).json({ error: "Please select at least one country" });
+    res.status(400).json({ error: ERR_MESSAGE_SELECT });
   }
 
   const selected = req.body.selected.join(", ");
   const prompt = `Suggest 5 new countries to visit based on ${selected} in javascript array format`;
 
-  const response = await fetch("https://api.openai.com/v1/completions", {
+  const response = await fetch(COMPLETIONS_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -43,11 +45,9 @@ export default async function handler(
       suggestions: sanitizeString(suggestions.text),
     });
   } else {
-    res
-      .status(404)
-      .json({
-        error: "Our AI could not find any suggestions, please try again",
-      });
+    res.status(404).json({
+      error: ERR_MESSAGE_NOT_FOUND,
+    });
   }
 }
 

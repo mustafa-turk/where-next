@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { isEmpty } from "lodash";
 import { useMutation } from "react-query";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 import Head from "next/head";
 import Header from "@/components/header";
@@ -11,9 +11,11 @@ import Loader from "@/components/loader";
 import MetaTags from "@/components/meta-tags";
 import Toast, { toast } from "@/components/toast";
 import Footer from "@/components/footer";
+import AnimatedSection from "@/components/animated-section";
 
 import { getCountriesByCode } from "@/utils/lookup";
 import { fetchSuggestions } from "@/utils/api";
+import { ERR_MESSAGE_NOT_FOUND } from "@/utils/constants";
 
 export default function HomePage() {
   const [selectedCountryNames, setSelectedCountryNames] = useState([]);
@@ -24,9 +26,7 @@ export default function HomePage() {
     reset,
   } = useMutation(() => fetchSuggestions(selectedCountryNames), {
     onError: () => {
-      toast(
-        "We could not find any suggestions, please try again by selecting other countries"
-      );
+      toast(ERR_MESSAGE_NOT_FOUND);
     },
   });
 
@@ -56,12 +56,7 @@ export default function HomePage() {
       <main className='p-4 max-w-xl mx-auto -mt-14'>
         <AnimatePresence mode='popLayout'>
           {isEmpty(suggestions) && (
-            <motion.section
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className='mt-10'
-            >
+            <AnimatedSection>
               <h2 className='font-bold text-xl mb-3 text-white'>
                 Where have you already been?
               </h2>
@@ -82,18 +77,13 @@ export default function HomePage() {
                   "Find Destinations"
                 )}
               </button>
-            </motion.section>
+            </AnimatedSection>
           )}
         </AnimatePresence>
 
         <AnimatePresence mode='popLayout'>
           {!isEmpty(suggestions) && (
-            <motion.section
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className='mt-10'
-            >
+            <AnimatedSection>
               <h2 className='font-bold text-xl mb-3 text-white'>
                 Our top destinations for you are the following, have fun!
               </h2>
@@ -121,7 +111,7 @@ export default function HomePage() {
               <button onClick={handleReset} className='button--primary'>
                 Find again
               </button>
-            </motion.section>
+            </AnimatedSection>
           )}
         </AnimatePresence>
       </main>

@@ -3,13 +3,12 @@ import Select from "react-select";
 
 import { getAllCountries } from "@/utils/lookup";
 
-function CustomSelect({
-  onChange,
-  isDisabled,
-}: {
+type Props = {
   onChange: Function;
   isDisabled: boolean;
-}) {
+};
+
+function CustomSelect({ onChange, isDisabled }: Props) {
   const isWindows = navigator.platform.indexOf("Win") === 0;
 
   const options = getAllCountries().map((c) => ({
