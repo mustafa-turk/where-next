@@ -8,6 +8,7 @@ import Header from "@/components/header";
 import Banner from "@/components/banner";
 import Select from "@/components/select";
 import Loader from "@/components/loader";
+import MetaTags from "@/components/meta-tags";
 import Toast, { toast } from "@/components/toast";
 import Footer from "@/components/footer";
 
@@ -45,24 +46,7 @@ export default function HomePage() {
     <div className='py-4'>
       <Head>
         <title>Where to go Next?</title>
-        <meta
-          name='description'
-          content='AI will pick the top destinations for you!'
-          key='desc'
-        />
-        <meta property='og:title' content='Where next?' />
-        <meta
-          property='og:description'
-          content='AI will pick the top destinations for you!'
-        />
-        <meta property='og:image' content='/og.jpg' />
-        <meta name='twitter:title' content='Where next?' />
-        <meta
-          name='twitter:description'
-          content='AI will pick the top destinations for you!'
-        />
-        <meta name='twitter:image' content='/og.jpg' />
-        <meta name='twitter:card' content='summary_large_image' />
+        <MetaTags />
       </Head>
 
       <Toast />
