@@ -54,9 +54,9 @@ export default function HomePage() {
       <Banner />
 
       <main className='p-4 max-w-xl mx-auto -mt-14'>
-        <AnimatePresence mode='popLayout'>
+        <AnimatePresence mode='wait' initial={false}>
           {isEmpty(suggestions) && (
-            <AnimatedSection>
+            <AnimatedSection name='initial'>
               <h2 className='font-bold text-xl mb-3 text-white'>
                 Where have you already been?
               </h2>
@@ -79,11 +79,8 @@ export default function HomePage() {
               </button>
             </AnimatedSection>
           )}
-        </AnimatePresence>
-
-        <AnimatePresence mode='popLayout'>
           {!isEmpty(suggestions) && (
-            <AnimatedSection>
+            <AnimatedSection name='results'>
               <h2 className='font-bold text-xl mb-3 text-white'>
                 Our top destinations for you are the following, have fun!
               </h2>
