@@ -12,7 +12,7 @@ function Toast() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className='p-2 px-4 bg-red-700 border border-red-800 text-red-100 rounded-md shadow-lg'
+              className='p-2 px-4 border-2 bg-red-800 border-red-900 text-red-100 rounded-xl'
             >
               <p>{resolveValue(t.message, t)}</p>
             </motion.div>
