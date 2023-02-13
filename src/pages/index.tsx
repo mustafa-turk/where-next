@@ -54,7 +54,7 @@ export default function HomePage() {
       <Banner />
 
       <main className='p-4 max-w-xl mx-auto -mt-14'>
-        <AnimatePresence mode='wait' initial={false}>
+        <AnimatePresence mode='wait'>
           {isEmpty(suggestions) && (
             <AnimatedSection name='initial'>
               <h2 className='font-bold text-xl mb-3 text-white'>
