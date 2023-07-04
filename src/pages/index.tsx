@@ -99,7 +99,7 @@ export default function HomePage() {
                         href={suggestion.url}
                         rel='noreferrer'
                       >
-                        Ready more on Wikipedia &rarr;
+                        Read more on Wikipedia &rarr;
                       </a>
                     </div>
                   );
